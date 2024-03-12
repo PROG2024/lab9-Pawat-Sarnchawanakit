@@ -9,6 +9,10 @@ class Circle:
         
         :param radius: radius of the circle, may be zero.
         :raises ValueError: if radius is negative.
+        >>> Circle(-69)
+        Traceback (most recent call last):
+            ...
+        ValueError: radius must be non-negative
         """
         if radius < 0:
             raise ValueError("radius must be non-negative")
@@ -19,6 +23,8 @@ class Circle:
         area of this circle and another circle.
         Since area is pi*r**2, the radii of the 3 circles
         should form a Pythagorean triple (r1^2 + r2^2 = r3^2)
+        >>> Circle(3).add_area(Circle(4)).get_radius()
+        5.0
         """
         r1 = self.get_radius()
         r2 = circle.get_radius()
