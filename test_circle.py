@@ -7,14 +7,14 @@ Write unit tests as described in README.md.
 3. Unit test that circle constructor raises exception of radius is negative.
 
 """
-from circle import Circle
 import unittest
-from unittest import TestCase
+from circle import Circle
 
 
-class TestCircle(TestCase):
-
-    def test_add_area(self):
+class TestCircle(unittest.TestCase):
+    """The test for Circle class."""
+    def test_add_area(self) -> None:
+        """Simple add_area test."""
         circle = Circle(10)
         circle_2 = Circle(10)
         new_circle = circle.add_area(circle_2)
@@ -24,7 +24,8 @@ class TestCircle(TestCase):
         self.assertEqual(circle.get_radius(), 10)
         self.assertEqual(circle_2.get_radius(), 10)
 
-    def test_add_area_edge(self):
+    def test_add_area_edge(self) -> None:
+        """add_area edge cases."""
         circle_2 = Circle(10)
         circle_3 = Circle(0)
         new_circle = circle_2.add_area(circle_3)
@@ -32,8 +33,9 @@ class TestCircle(TestCase):
         new_circle = circle_3.add_area(circle_2)
         self.assertEqual(new_circle.get_radius(), 10)
 
-    def test_circle_constructor(self):
-        self.assertRaises(Exception, Circle, -1)
+    def test_circle_constructor(self) -> None:
+        """Constructor test."""
+        self.assertRaises(ValueError, Circle, -1)
 
 
 if __name__ == "__main__":
