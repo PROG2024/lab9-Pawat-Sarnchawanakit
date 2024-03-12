@@ -8,15 +8,28 @@
    1. in Counter, do not use any static methods except __new__.
       You may not have a __new__ depending on how you implement the singleton.
 """
+from typing import Self
 
-class Counter:
+class Counter(object):
+    __count: int
+    g_counter: Self | None = None
 
-    def __init__(self):
-        self.__count = 0
-
+    def __new__(cls):
+        if Counter.g_counter is not None:
+            return Counter.g_counter
+        new_counter = super(Counter, cls).__new__(cls)
+        new_counter.__count = 0
+        Counter.g_counter = new_counter
+        return new_counter
 
     def __str__(self):
         return f"{self.__count}"
 
-    #TODO write count property
-    #TODO write increment method
+    @property
+    def count(self) -> int:
+        return self.__count
+
+    def increment(self) -> int:
+        self.__count += 1
+        return self.__count
+
