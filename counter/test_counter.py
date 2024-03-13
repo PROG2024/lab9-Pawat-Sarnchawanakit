@@ -12,13 +12,20 @@ from counter import Counter
 
 
 class CounterTest(unittest.TestCase):
+    """Tests for the Counter class."""
 
-    def test(self):
+    def test_count(self):
+        """Tests count."""
         self.assertEqual(Counter().count, 0, "Initial counter not set to 0.")
         self.assertEqual(Counter().increment(), 1,
                          "Increment should return new value.")
         Counter().increment()
         self.assertEqual(Counter().count, 2, "Count should now be 2.")
+
+    def test_singleton(self):
+        """Test singleton."""
+        self.assertEqual(id(Counter()), id(Counter()),
+                         "Counter is not a singleton.")
 
 
 if __name__ == "__main__":

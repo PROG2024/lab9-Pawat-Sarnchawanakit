@@ -10,7 +10,8 @@
 """
 from typing import Self
 
-class Counter(object):
+class Counter:
+    """The singleton counter class."""
     __count: int
     g_counter: Self | None = None
 
@@ -27,9 +28,11 @@ class Counter(object):
 
     @property
     def count(self) -> int:
+        """Returns the current count."""
         return self.__count
 
     def increment(self) -> int:
+        """Increments the count and returns the new count."""
         self.__count += 1
         return self.__count
 
